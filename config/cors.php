@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['*','api/*', 'pide/*', 'sanctum/csrf-cookie', 'v1/*', 'erpbackend/public/*','api/*', 'user/*'],
+    'paths' => ['*','api/*', 'pide/*', 'sanctum/csrf-cookie', 'v1/*', 'mpl-pide/public/*','api/*', 'user/*'],
 
     'allowed_methods' => ['*'],
 
