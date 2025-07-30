@@ -59,6 +59,38 @@ class PideController extends Controller
         ]);
     }
 
+    public function updatePasswordUser(Request $request)
+    {
+        try {
+            $p_password = $request->input('password');
+            $p_userid = $request->input('iduser');
+
+            $results = DB::connection('mysql')->select('CALL sp_passworduser_upd(?, ?)', [
+                $p_password,
+                $p_userid
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Contraseña actualizada correctamente',
+                'data' => $results
+            ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $fullMessage = $e->getMessage();
+
+            if (preg_match('/1644\s(.+?)\s*\(Connection:/', $fullMessage, $matches)) {
+                $cleanMessage = trim($matches[1]);
+            } else {
+                $cleanMessage = 'Ocurrió un error desconocido.';
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => $cleanMessage
+            ]);
+        }
+    }
+
     public function getMenus()
     {
         $results = DB::connection('mysql')->select('CALL sp_menus_sel()', []);

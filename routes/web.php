@@ -18,6 +18,7 @@ Route::prefix('pide')->group(function () {
     Route::post('ins-permissions', [PideController::class, 'insertPermissions']);
     Route::post('ins-usuario', [PideController::class, 'insertUsers']);
     Route::post('upd-reniec-credentials', [PideController::class, 'updateReniecCredentials']);
+    Route::post('upd-password-user', [PideController::class, 'updatePasswordUser']);
 
     Route::post('sel-menus-user', [PideController::class, 'getMenusByUser']);
     Route::post('sel-menus', [PideController::class, 'getMenus']);
